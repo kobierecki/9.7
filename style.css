@@ -1,0 +1,39 @@
+body {
+    background-color: #ecf0f1;
+}
+
+.container-button {
+    padding: 40px;
+}
+
+#js-gameConsole {
+    border: 2px solid #000000;
+    margin: 40px 10% 40px;
+    max-height: 200px;
+    overflow-y: scroll;
+}
+#js-gameConsole p{
+ text-align: center;
+}
+
+.btn-default {
+    margin-top: 20px;
+}
+
+.winner-display {
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+.badge {
+    font-size: 20px;
+}
+
+p {
+    margin: 0;
+    padding: 10px;
+}
+
+.btn{
+    margin: 15px;
+}
