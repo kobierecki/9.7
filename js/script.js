@@ -138,6 +138,7 @@ function setGamePoints() {
 }
 
 function gameConsole() {
+  if (gameState === 'ended') { return; }
   var gameWinner = winnerIs;
   var newElem = document.createElement('p');
   
@@ -159,12 +160,12 @@ function gameEnd() {
     player.score == 10 ? winnerIsDisplay.innerHTML = player.name + " won. It took " + gameMaster.round + " rounds": winnerIsDisplay.innerHTML = "Computer won! It took " + gameMaster.round + " rounds";
     gameState = 'ended';
     setGameElements();
-// zawsze pozostaje ostatni paragraf
+// zawsze pozostaje ostatni paragraf 
     gameConsoleDiv.innerHTML = "";
    
-      while(gameConsoleDiv.firstChild) {
-        gameConsoleDiv.removeChild(gameConsoleDiv.firstChild);
-      }
+    while(gameConsoleDiv.firstChild) {
+      gameConsoleDiv.removeChild(gameConsoleDiv.firstChild);
+    }
 }
 
 function iconSelector() {
