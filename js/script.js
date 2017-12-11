@@ -86,6 +86,10 @@ function setGameElements() {
   }
 }
 
+function roundWinnerReset() {
+  playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+}
+
 function playerPick(playerPick) {
   var computerPick = getComputerPick();
 
@@ -101,9 +105,10 @@ function getComputerPick() {
 }
 
 function checkRoundWinner(playerPick, computerPick) {
-  playerResultElem.innerHTML = computerResultElem.innerHTML = '';
+  roundWinnerReset();
   gameMaster.round++;
-  winnerIs = 'player';
+
+  var winnerIs = 'player';
 
     if (playerPick == computerPick) {
         winnerIs = 'noone';
@@ -127,7 +132,7 @@ function checkRoundWinner(playerPick, computerPick) {
       gameEnd();
     }
     setGamePoints();
-    gameConsole();
+    gameConsole(winnerIs);
 }
 
 function setGamePoints() {
@@ -137,35 +142,22 @@ function setGamePoints() {
   drawsNumber.innerHTML = gameMaster.draw;
 }
 
-function gameConsole() {
+function gameConsole(gameWinner) {
   if (gameState === 'ended') { return; }
-  var gameWinner = winnerIs;
   var newElem = document.createElement('p');
   
-  var playerWonOutput = "In round " + gameMaster.round + " player has won!";
-  var computerWonOutput = "In round " + gameMaster.round +  " computer has won!";
+  var winnerOutput = "In round " + gameMaster.round + " " + gameWinner + " has won!";
   var drawOutput = "Round " + gameMaster.round +  " was a draw!";
-  if (gameWinner == 'player') {
-    newElem.innerHTML = playerWonOutput;
-  } else if (gameWinner == 'computer') {
-    newElem.innerHTML = computerWonOutput;
-  } else {
-    newElem.innerHTML = drawOutput;
-  }
+
+  gameWinner == 'player' || gameWinner == 'computer' ? newElem.innerHTML = winnerOutput:newElem.innerHTML = drawOutput;
   gameConsoleDiv.appendChild(newElem);
 }
 
-function gameEnd() {
-    
+function gameEnd() { 
     player.score == 10 ? winnerIsDisplay.innerHTML = player.name + " won. It took " + gameMaster.round + " rounds": winnerIsDisplay.innerHTML = "Computer won! It took " + gameMaster.round + " rounds";
     gameState = 'ended';
     setGameElements();
-// zawsze pozostaje ostatni paragraf 
     gameConsoleDiv.innerHTML = "";
-   
-    while(gameConsoleDiv.firstChild) {
-      gameConsoleDiv.removeChild(gameConsoleDiv.firstChild);
-    }
 }
 
 function iconSelector() {
